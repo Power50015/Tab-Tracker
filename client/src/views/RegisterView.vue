@@ -1,9 +1,30 @@
 <template>
-  <div>
-    <h1>Register</h1>
-    <input type="email" v-model="email" />
-    <input type="password" v-model="password" />
-    <button @click="register">Register</button>
+  <div class="mt-5">
+    <v-container>
+      <h1 class="text-center mb-5">Register</h1>
+      <v-alert type="error" v-if="error">
+        <div v-html="error"></div>
+      </v-alert>
+      <v-alert type="success" v-if="success">
+        <div v-html="success"></div>
+      </v-alert>
+      <v-row>
+        <v-col cols="12">
+          <v-text-field v-model="email" label="E-mail" required></v-text-field>
+        </v-col>
+        <v-col cols="12">
+          <v-text-field
+            v-model="password"
+            type="password"
+            label="password"
+            required
+          ></v-text-field>
+        </v-col>
+        <v-btn block color="primary" elevation="1" @click="register" x-large
+          >Register</v-btn
+        >
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -13,17 +34,24 @@ export default {
   name: "RegisterView",
   data () {
     return {
-      email: "",
-      password: "",
+      email: "test1234@telegram.com",
+      password: "123456789",
+      error: "",
+      success: "",
     };
   },
   methods: {
-    async register  () {
-      const res = await AuthenticationService.register({
-        email: this.email,
-        password: this.password,
-      });
-      console.log(res.data.message);
+    async register () {
+      this.error = "";
+      try {
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password,
+        });
+        this.success = "User Has Created";
+      } catch (e) {
+        this.error = e.response.data.error;
+      }
     },
   },
 };
