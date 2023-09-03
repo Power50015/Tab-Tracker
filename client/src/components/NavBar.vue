@@ -6,13 +6,13 @@
 
     <v-spacer></v-spacer>
 
-    <router-link to="login">
+    <router-link to="login"  v-if="!$store.state.isUserLoggedIn">
       <v-btn text>
         <span class="mr-2">Login</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </router-link>
-    <router-link to="register">
+    <router-link to="register"  v-if="!$store.state.isUserLoggedIn">
       <v-btn text>
         <span class="mr-2">Register</span>
         <v-icon>mdi-open-in-new</v-icon>

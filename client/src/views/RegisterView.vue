@@ -45,10 +45,12 @@ export default {
       this.error = "";
       this.success = "";
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password,
         });
+        this.$store.dispatch("setToken", response.data.token);
+        this.$store.dispatch("setUser", response.data.user);
         this.success = "User Has Created";
       } catch (e) {
         this.error = e.response.data.error;
