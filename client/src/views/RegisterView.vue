@@ -43,6 +43,7 @@ export default {
   methods: {
     async register () {
       this.error = "";
+      this.success = "";
       try {
         await AuthenticationService.register({
           email: this.email,

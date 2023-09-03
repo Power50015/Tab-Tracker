@@ -21,7 +21,7 @@
           ></v-text-field>
         </v-col>
         <v-btn block color="primary" elevation="1" @click="register" x-large
-          >Register</v-btn
+          >Login</v-btn
         >
       </v-row>
     </v-container>
@@ -43,6 +43,7 @@ export default {
   methods: {
     async register () {
       this.error = "";
+      this.success = "";
       try {
         await AuthenticationService.login({
           email: this.email,
