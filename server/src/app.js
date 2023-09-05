@@ -14,7 +14,7 @@ app.use(morgan("combined"));
 
 require("./route")(app);
 
-sequelize.sync().then(() => {
+sequelize.sync({force: false}).then(() => {
   app.listen(config.port, () => {
     console.log(`Local:   http://localhost:${config.port}/`);
   });
