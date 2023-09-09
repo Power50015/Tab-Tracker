@@ -52,6 +52,11 @@ export default {
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
         this.success = "User Has login";
+        this.$router
+          .push({
+            name: "home",
+          })
+          .catch(() => {});
       } catch (e) {
         this.error = e.response.data.error;
       }
