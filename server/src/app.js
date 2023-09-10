@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const { sequelize } = require("./models");
 const config = require("./config/config");
+require("./passport");
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(morgan("combined"));
 
 require("./route")(app);
 
-sequelize.sync({force: false}).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(config.port, () => {
     console.log(`Local:   http://localhost:${config.port}/`);
   });

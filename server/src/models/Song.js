@@ -12,5 +12,8 @@ module.exports = (sequelize) => {
     tab: DataTypes.TEXT,
   });
 
+  Song.associate = function (models) {
+  }
+  
   return Song;
 };

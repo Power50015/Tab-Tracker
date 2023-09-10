@@ -41,5 +41,9 @@ module.exports = (sequelize) => {
     return bcrypt.compareSync(password, this.password);
   };
 
+
+  
+  User.associate = function (models) {
+  }
   return User;
 };
